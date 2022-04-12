@@ -5,6 +5,8 @@ import java.util.List;
 
 public class TodayWordle {
 
+    private static final int MAX_NUMBER_OF_ATTEMPTS = 6;
+
     private final Word word; // 오늘의 단어
     private List<Matches> matches = new ArrayList<>();
 
@@ -19,9 +21,8 @@ public class TodayWordle {
         matches.add(this.word.match(word));
     }
 
-    // 모두 맞거나 6번 되면 끝
     public boolean isEnd() {
-        return (!matches.isEmpty() && getLastAttempt().isEnd()) || matches.size() >= 6 ;
+        return (!matches.isEmpty() && getLastAttempt().isEnd()) || matches.size() >= MAX_NUMBER_OF_ATTEMPTS;
     }
 
     public Matches getLastAttempt() {

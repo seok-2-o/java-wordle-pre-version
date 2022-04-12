@@ -11,6 +11,8 @@ public class Application {
 
     public static void main(String[] args) {
 
+        ConsoleView.welcome();
+
         TodayWordle game = new TodayWordle(WordPool.getTodayWord());
 
         Scanner scanner = new Scanner(System.in);

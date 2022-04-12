@@ -12,7 +12,6 @@ public class Word {
     private static final int MAX_WORD_SIZE = 5;
     private static final Pattern WORD_RULE = Pattern.compile("^[a-zA-Z]*$");
 
-
     private List<String> words;
 
     public Word(String word) {
@@ -37,19 +36,18 @@ public class Word {
 
         List<String> temp = new ArrayList<>(this.words);
 
-        Matches.Type[] result = new Matches.Type[5];
+        Matches.Type[] result = new Matches.Type[MAX_WORD_SIZE];
         Arrays.fill(result, Matches.Type.MISMATCH);
 
         for (int idx = 0; idx < MAX_WORD_SIZE; idx++) {
-            String current = other.words.get(idx);
-            if (current.equals(this.words.get(idx))) {
+            if (other.words.get(idx).equals(this.words.get(idx))) {
                 result[idx] = Matches.Type.MATCH;
-                temp.remove(current); // 이미 매칭된 문자 제외
+                temp.remove(idx);
             }
         }
 
         for (int idx = 0; idx < MAX_WORD_SIZE; idx++) {
-            if (result[idx] != Matches.Type.MATCH && temp.remove(other.words.get(idx))) { //이미 매칭된 경우 제외 && 이미 다른 문자와 매칭된 경우 제외
+            if (result[idx] != Matches.Type.MATCH && temp.remove(other.words.get(idx))) {
                 result[idx] = Matches.Type.EXIST;
             }
         }

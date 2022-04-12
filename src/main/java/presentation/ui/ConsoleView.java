@@ -33,4 +33,8 @@ public class ConsoleView {
     public static void printTodayWord() {
         System.out.println(RESET + "오늘의 단어는 " + WordPool.getTodayWord().toString() + RESET);
     }
+
+    public static void welcome() {
+        System.out.println("오늘의 단어를 맞춰볼까요?");
+    }
 }
