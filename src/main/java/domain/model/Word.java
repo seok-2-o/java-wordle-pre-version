@@ -40,9 +40,10 @@ public class Word {
         Arrays.fill(result, Matches.Type.MISMATCH);
 
         for (int idx = 0; idx < MAX_WORD_SIZE; idx++) {
-            if (other.words.get(idx).equals(this.words.get(idx))) {
+            String current = other.words.get(idx);
+            if (current.equals(this.words.get(idx))) {
                 result[idx] = Matches.Type.MATCH;
-                temp.remove(idx);
+                temp.remove(current);
             }
         }
 

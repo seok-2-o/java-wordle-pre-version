@@ -17,7 +17,14 @@ public class Application {
 
         Scanner scanner = new Scanner(System.in);
         while (!game.isEnd()) {
-            game.attempt(new Word(scanner.nextLine()));
+            String input = scanner.nextLine();
+            try {
+                Word word = new Word(input);
+                game.attempt(word);
+            } catch (IllegalArgumentException e) {
+                ConsoleView.error(input);
+                continue;
+            }
             ConsoleView.render(game.getLastAttempt());
         }
         ConsoleView.render(game.getAllAttempt());
