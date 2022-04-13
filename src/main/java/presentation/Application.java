@@ -1,32 +1,33 @@
 package presentation;
 
-import domain.model.TodayWordle;
-import domain.model.Word;
-import utility.WordPool;
-import presentation.ui.ConsoleView;
+import word.domain.model.TextWordProvider;
+import word.domain.model.Word;
+import domain.model.Wordle;
+import word.domain.model.WordProvider;
 
-import java.util.Scanner;
+import presentation.ui.ConsoleView;
 
 public class Application {
 
     public static void main(String[] args) {
 
         ConsoleView.welcome();
-        TodayWordle game = new TodayWordle(WordPool.getTodayWord());
+        WordProvider pool = new TextWordProvider();
+        Wordle game = new Wordle(pool.getTodayWord());
 
         while (!game.isEnd()) {
             String input = ConsoleView.ask();
             try {
-                Word word = new Word(input);
-                game.attempt(word);
+                Word answer = pool.wrap(input);
+                game.attempt(answer);
             } catch (IllegalArgumentException e) {
-                ConsoleView.error(input);
+                ConsoleView.error(e.getMessage(), input);
                 continue;
             }
             ConsoleView.render(game.getLastAttempt());
         }
         ConsoleView.render(game.getAllAttempt());
-        ConsoleView.printTodayWord();
+        ConsoleView.printTodayWord(pool.toString());
 
     }
 }

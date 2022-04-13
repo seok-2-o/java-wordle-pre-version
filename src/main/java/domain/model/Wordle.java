@@ -1,24 +1,27 @@
 package domain.model;
 
+import word.domain.model.Matches;
+import word.domain.model.Word;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class TodayWordle {
+public class Wordle {
 
     private static final int MAX_NUMBER_OF_ATTEMPTS = 6;
 
     private final Word word; // 오늘의 단어
     private List<Matches> matches = new ArrayList<>();
 
-    public TodayWordle(Word word) {
+    public Wordle(Word word) {
         this.word = word;
     }
 
-    public void attempt(Word word) {
+    public void attempt(Word answer) {
         if(isEnd()) {
             throw new IllegalStateException("더이상 게임을 진행할 수 없습니다.");
         }
-        matches.add(this.word.match(word));
+        matches.add(word.match(answer));
     }
 
     public boolean isEnd() {

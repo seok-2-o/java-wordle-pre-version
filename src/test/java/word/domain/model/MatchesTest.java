@@ -1,8 +1,9 @@
-package domain.model;
+package word.domain.model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import word.domain.model.Matches;
 
 class MatchesTest {
 

@@ -1,7 +1,6 @@
 package presentation.ui;
 
-import domain.model.Matches;
-import utility.WordPool;
+import word.domain.model.Matches;
 
 import java.util.List;
 import java.util.Map;
@@ -33,16 +32,16 @@ public class ConsoleView {
     }
 
 
-    public static void printTodayWord() {
-        System.out.println(RESET + "오늘의 단어는 " + WordPool.getTodayWord().toString() + RESET);
+    public static void printTodayWord(String word) {
+        System.out.println(RESET + "오늘의 단어는 " + word + RESET);
     }
 
     public static void welcome() {
         System.out.println("오늘의 단어를 맞춰볼까요?");
     }
 
-    public static void error(String input) {
-        System.out.println(RESET + "다섯글자 영어 단어를 입력해주세요. : " + input + RESET);
+    public static void error(String message, String input) {
+        System.out.println(RESET + message + ":" + input + RESET);
     }
 
     public static String ask() {

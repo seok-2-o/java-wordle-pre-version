@@ -1,11 +1,10 @@
-package domain.model;
+package word.domain.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Word {
 
@@ -14,7 +13,7 @@ public class Word {
 
     private List<String> words;
 
-    public Word(String word) {
+    Word(String word) {
         validate(word);
         this.words = Arrays.asList(word.toLowerCase().split(""));
     }
