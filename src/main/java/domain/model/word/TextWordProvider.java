@@ -46,7 +46,7 @@ public final class TextWordProvider implements WordProvider {
 
     @Override
     public Word wrap(String word) {
-        if (!contains(word)) {
+        if (!contains(word.toLowerCase())) {
             throw new IllegalArgumentException("등록된 단어만 입력 가능합니다.");
         }
         return new Word(word);
