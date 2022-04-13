@@ -1,9 +1,9 @@
 package presentation;
 
-import word.domain.model.TextWordProvider;
-import word.domain.model.Word;
+import domain.model.word.TextWordProvider;
+import domain.model.word.Word;
 import domain.model.Wordle;
-import word.domain.model.WordProvider;
+import domain.model.word.WordProvider;
 
 import presentation.ui.ConsoleView;
 
@@ -27,7 +27,7 @@ public class Application {
             ConsoleView.render(game.getLastAttempt());
         }
         ConsoleView.render(game.getAllAttempt());
-        ConsoleView.printTodayWord(pool.toString());
+        ConsoleView.printTodayWord(pool.getTodayWord().toString());
 
     }
 }

@@ -1,7 +1,7 @@
 package domain.model;
 
-import word.domain.model.Matches;
-import word.domain.model.Word;
+import domain.model.word.Matches;
+import domain.model.word.Word;
 
 import java.util.ArrayList;
 import java.util.List;

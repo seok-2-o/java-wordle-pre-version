@@ -1,7 +1,7 @@
-package word.domain.model;
+package domain.model.word;
 
-import word.domain.model.Word;
-import word.domain.model.WordProvider;
+import domain.model.word.Word;
+import domain.model.word.WordProvider;
 
 import java.time.LocalDate;
 

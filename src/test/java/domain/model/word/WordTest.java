@@ -1,12 +1,14 @@
-package word.domain.model;
+package domain.model.word;
 
+import domain.model.word.Matches;
+import domain.model.word.Word;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static word.domain.model.Matches.Type.*;
+import static domain.model.word.Matches.Type.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

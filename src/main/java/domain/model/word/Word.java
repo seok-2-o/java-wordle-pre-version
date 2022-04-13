@@ -1,4 +1,4 @@
-package word.domain.model;
+package domain.model.word;
 
 import java.util.ArrayList;
 import java.util.Arrays;

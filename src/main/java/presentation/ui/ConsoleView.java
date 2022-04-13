@@ -1,6 +1,6 @@
 package presentation.ui;
 
-import word.domain.model.Matches;
+import domain.model.word.Matches;
 
 import java.util.List;
 import java.util.Map;

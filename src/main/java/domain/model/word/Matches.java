@@ -1,11 +1,11 @@
-package word.domain.model;
+package domain.model.word;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import static word.domain.model.Matches.Type.MATCH;
+import static domain.model.word.Matches.Type.MATCH;
 
 public class Matches {
 
