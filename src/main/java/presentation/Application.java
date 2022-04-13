@@ -12,12 +12,10 @@ public class Application {
     public static void main(String[] args) {
 
         ConsoleView.welcome();
-
         TodayWordle game = new TodayWordle(WordPool.getTodayWord());
 
-        Scanner scanner = new Scanner(System.in);
         while (!game.isEnd()) {
-            String input = scanner.nextLine();
+            String input = ConsoleView.ask();
             try {
                 Word word = new Word(input);
                 game.attempt(word);
