@@ -39,6 +39,6 @@ public class ConsoleView {
     }
 
     public static void error(String input) {
-        System.out.println("다섯글자 영어 단어를 입력해주세요. : " + input);
+        System.out.println(RESET + "다섯글자 영어 단어를 입력해주세요. : " + input + RESET);
     }
 }

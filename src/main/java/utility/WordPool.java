@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -31,7 +32,11 @@ public final class WordPool {
     private WordPool() {};
 
     public static Word getTodayWord() {
-        int today = Integer.parseInt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-        return new Word(WORDS.get(today % WORDS.size()));
+        return getWord(LocalDate.now());
+    }
+
+    public static Word getWord(LocalDate date) {
+        int seed = Integer.parseInt(date.format(DateTimeFormatter.ofPattern("yyyyMMdd"))) % WORDS.size();
+        return new Word(WORDS.get(seed));
     }
 }
