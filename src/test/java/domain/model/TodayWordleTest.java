@@ -1,10 +1,10 @@
 package domain.model;
 
-import domain.model.word.FakeWordProvider;
+import domain.model.helper.FakeWordProvider;
+import infra.WordProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import domain.model.word.WordProvider;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,13 +15,13 @@ class TodayWordleTest {
 
     @BeforeEach
     void setup() {
-        this.wordle = new Wordle(provider.wrap("apple"));
+        this.wordle = new Wordle(new Word("apple", provider));
     }
 
     @DisplayName("단어를 맞춘 경우 게임이 종료된다.")
     @Test
     void isEnd01() {
-        wordle.attempt(provider.wrap("apple"));
+        wordle.attempt(new Word("apple", provider));
         assertThat(wordle.isEnd())
                 .isTrue();
     }
@@ -29,13 +29,13 @@ class TodayWordleTest {
     @DisplayName("6번 시도하면 게임이 종료된다.")
     @Test
     void isEnd02() {
-        wordle.attempt(provider.wrap("abced"));
-        wordle.attempt(provider.wrap("abced"));
-        wordle.attempt(provider.wrap("abced"));
-        wordle.attempt(provider.wrap("abced"));
-        wordle.attempt(provider.wrap("abced"));
-        wordle.attempt(provider.wrap("abced"));
-
+        wordle.attempt(new Word("ddddd",provider));
+        wordle.attempt(new Word("ddddd",provider));
+        wordle.attempt(new Word("ddddd",provider));
+        wordle.attempt(new Word("ddddd",provider));
+        wordle.attempt(new Word("ddddd",provider));
+        wordle.attempt(new Word("ddddd",provider));
+        wordle.attempt(new Word("ddddd",provider));
         assertThat(wordle.isEnd())
                 .isTrue();
     }

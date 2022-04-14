@@ -1,24 +1,26 @@
 package presentation;
 
-import domain.model.word.TextWordProvider;
-import domain.model.word.Word;
+import infra.TextWordProvider;
+import domain.model.Word;
 import domain.model.Wordle;
-import domain.model.word.WordProvider;
+import infra.WordProvider;
 
 import presentation.ui.ConsoleView;
+
 
 public class Application {
 
     public static void main(String[] args) {
 
         ConsoleView.welcome();
-        WordProvider pool = new TextWordProvider();
-        Wordle game = new Wordle(pool.getTodayWord());
+        WordProvider provider = new TextWordProvider();
+        Word today = Word.todayWord(provider);
+        Wordle game = new Wordle(today);
 
         while (!game.isEnd()) {
             String input = ConsoleView.ask();
             try {
-                Word answer = pool.wrap(input);
+                Word answer = new Word(input, provider);
                 game.attempt(answer);
             } catch (IllegalArgumentException e) {
                 ConsoleView.error(e.getMessage(), input);
@@ -26,8 +28,9 @@ public class Application {
             }
             ConsoleView.render(game.getLastAttempt());
         }
+
         ConsoleView.render(game.getAllAttempt());
-        ConsoleView.printTodayWord(pool.getTodayWord().toString());
+        ConsoleView.printTodayWord(today.toString());
 
     }
 }

@@ -1,8 +1,5 @@
 package domain.model;
 
-import domain.model.word.Matches;
-import domain.model.word.Word;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +7,7 @@ public class Wordle {
 
     private static final int MAX_NUMBER_OF_ATTEMPTS = 6;
 
-    private final Word word; // 오늘의 단어
+    private final Word word;
     private List<Matches> matches = new ArrayList<>();
 
     public Wordle(Word word) {

@@ -1,4 +1,4 @@
-package domain.model.word;
+package infra;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -14,6 +14,7 @@ import java.util.List;
 public final class TextWordProvider implements WordProvider {
 
     private static final String WORDS_TXT_PATH = "words.txt";
+    private static final long WORDLE_DAY = LocalDate.of(2021, 6, 19).toEpochDay();
     private final List<String> words;
 
     public TextWordProvider() {
@@ -28,15 +29,14 @@ public final class TextWordProvider implements WordProvider {
     }
 
     @Override
-    public Word getTodayWord() {
+    public String getTodayWord() {
         return getWord(ZonedDateTime.now(ZoneId.of("America/New_York")).toLocalDate());
     }
 
-    @Override
-    public Word getWord(LocalDate date) {
-        int diff = Math.toIntExact(date.toEpochDay() - LocalDate.of(2021, 6, 19).toEpochDay());
+    private String getWord(LocalDate date) {
+        int diff = Math.toIntExact(date.toEpochDay() - WORDLE_DAY);
         int seed = diff % words.size();
-        return new Word(words.get(seed));
+        return words.get(seed);
     }
 
     @Override
@@ -44,11 +44,5 @@ public final class TextWordProvider implements WordProvider {
         return words.contains(word);
     }
 
-    @Override
-    public Word wrap(String word) {
-        if (!contains(word.toLowerCase())) {
-            throw new IllegalArgumentException("등록된 단어만 입력 가능합니다.");
-        }
-        return new Word(word);
-    }
+
 }

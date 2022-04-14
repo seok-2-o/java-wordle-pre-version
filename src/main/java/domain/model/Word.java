@@ -1,29 +1,37 @@
-package domain.model.word;
+package domain.model;
+
+import infra.WordProvider;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class Word {
 
     private static final int MAX_WORD_SIZE = 5;
-    private static final Pattern WORD_RULE = Pattern.compile("^[a-zA-Z]*$");
 
     private List<String> words;
 
-    Word(String word) {
-        validate(word);
-        this.words = Arrays.asList(word.toLowerCase().split(""));
+    private Word(String word) {
+        this.words = split(word);
     }
 
-    private void validate(String word) {
-        if (Objects.isNull(word) || word.length() != MAX_WORD_SIZE) {
-            throw new IllegalArgumentException("다섯글자 단어만 가능합니다.");
-        }
-        if (!WORD_RULE.matcher(word).matches()) {
-            throw new IllegalArgumentException("영어 단어만 입력 가능합니다.");
+    public Word(String word, WordProvider provider) {
+        validate(word, provider);
+        this.words = split(word);
+    }
+
+    private List<String> split(String word) {
+        return Arrays.asList(word.toLowerCase().split(""));
+    }
+
+    public static Word todayWord(WordProvider provider) {
+        return new Word(provider.getTodayWord());
+    }
+
+    private void validate(String word, WordProvider provider) {
+        if(!provider.contains(word)) {
+            throw new IllegalArgumentException("등록된 단어만 입력 가능합니다.");
         }
     }
 
@@ -34,7 +42,6 @@ public class Word {
         }
 
         List<String> temp = new ArrayList<>(this.words);
-
         Matches.Type[] result = new Matches.Type[MAX_WORD_SIZE];
         Arrays.fill(result, Matches.Type.MISMATCH);
 
